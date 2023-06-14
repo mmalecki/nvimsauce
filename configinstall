@@ -1,0 +1,12 @@
+#!/bin/bash
+READLINK=readlink
+which greadlink && READLINK=greadlink
+
+pluginpath="$(dirname "$($READLINK -f $0)")"
+rm -rvf "$HOME/.config/nvim"
+ln -sv $pluginpath "$HOME/.config/nvim"
+
+which npm && npm install -g typescript-language-server || true
+which go && go install github.com/hashicorp/terraform-ls@latest || true
+which go && go install golang.org/x/tools/gopls@latest || true
+which cargo && cargo install openscad-lsp || true
