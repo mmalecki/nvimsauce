@@ -45,7 +45,7 @@ require('packer').startup(function (use)
     end,
     config = function()
       require('nvim-treesitter.configs').setup {
-        ensure_installed = { "c", "lua", "rust", "python", "terraform" },
+        ensure_installed = { "c", "lua", "rust", "python", "terraform", "cue", "typescript", "scss", "svelte" },
         highlight = {
           enable = true,
           additional_vim_regex_highlighting = false,
