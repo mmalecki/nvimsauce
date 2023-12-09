@@ -10,6 +10,9 @@ vim.o.expandtab = true
 vim.o.smartindent = true
 vim.o.tabstop = 2
 
+-- Filename completion
+vim.opt.wildignore:append{"*.pdf","*.stl","*.step","*.3mf","*.jpg","*.png"}
+
 -- Search options
 vim.o.ignorecase = true
 vim.o.smartcase = true
