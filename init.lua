@@ -22,7 +22,7 @@ keymap("n", ";", ":", keymap_opts)
 keymap("i", "kj", "<ESC>", keymap_opts)
 keymap("t", "kj", "<C-\\><C-n>", keymap_opts)
 
-keymap("n", "<F5>", ":call jobstart(['openscad', expand('%h')])<CR>", keymap_opts)
+keymap("n", "<F5>", ":call jobstart([expand('%:e') == 'scad' ? 'openscad' : 'cq-editor', expand('%h')])<CR>", keymap_opts)
 
 -- Look
 cmd("colorscheme NeoSolarized")
