@@ -80,6 +80,14 @@ require('packer').startup(function (use)
       require("todo-comments").setup {}
     end
   }
+
+  use {
+    "kylechui/nvim-surround",
+    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    config = function()
+      require("nvim-surround").setup {}
+    end
+  }
 end)
 
 vim.api.nvim_create_autocmd('LspAttach', {
