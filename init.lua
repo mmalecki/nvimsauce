@@ -5,7 +5,7 @@ local keymap = vim.api.nvim_set_keymap
 local keymap_opts = { noremap = true, silent = true }
 
 -- Indentation
--- vim.o.shiftwidth = 2
+vim.o.shiftwidth = 2
 vim.o.expandtab = true
 vim.o.smartindent = true
 vim.o.tabstop = 2
