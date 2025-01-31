@@ -88,6 +88,10 @@ require('packer').startup(function (use)
       require("nvim-surround").setup {}
     end
   }
+
+  use 'tpope/vim-abolish'
+
+  use 'knsh14/vim-github-link'
 end)
 
 vim.api.nvim_create_autocmd('LspAttach', {
