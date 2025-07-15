@@ -22,9 +22,10 @@ keymap("n", ";", ":", keymap_opts)
 keymap("i", "kj", "<ESC>", keymap_opts)
 keymap("t", "kj", "<C-\\><C-n>", keymap_opts)
 
-keymap("n", "<F5>", ":call jobstart([expand('%:e') == 'scad' ? 'openscad' : 'cq-editor', expand('%h')])<CR>", keymap_opts)
+keymap("n", "<F5>", ":call jobstart([expand('%:e') == 'scad' ? 'openscad' : 'ocp-view', expand('%h')])<CR>", keymap_opts)
 
 -- Look
+vim.o.background = "light"
 cmd("colorscheme NeoSolarized")
 vim.o.number = true
 vim.o.termguicolors = true
@@ -111,24 +112,23 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 -- Set up language servers
-require'lspconfig'.terraformls.setup{}
-
-require('lspconfig').tsserver.setup{}
-
-require'lspconfig'.openscad_lsp.setup{
+vim.lsp.enable('terraformls')
+vim.lsp.enable('ts_ls')
+vim.lsp.enable('openscad_lsp', {
   cmd = { "openscad-lsp", "--stdio", "--fmt-style", "file", "--fmt-exe", "clang-format-15" }
-}
+})
 
-require'lspconfig'.gopls.setup{}
+vim.lsp.enable('pyright')
+vim.lsp.enable('gopls')
+vim.lsp.enable('rust_analyzer')
+vim.lsp.enable('clangd')
 
-require'lspconfig'.pyright.setup{}
-
-require'lspconfig'.rust_analyzer.setup{}
+vim.lsp.set_log_level("off")
 
 -- Autocommands
 autocmd('BufWritePre', {
-  pattern = {'*'},
+  pattern = {'*.ts', '*.py', '*.rs'},
   callback = function()
-    vim.lsp.buf.format()
+    vim.lsp.buf.format({ async = true })
   end
 })
