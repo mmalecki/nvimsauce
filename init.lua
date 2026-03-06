@@ -32,11 +32,6 @@ vim.g.terraform_fmt_on_save = 1
 
 require("config.lazy")
 -- Plugins left to migrate to Lazy:
---   use {
---     'nmac427/guess-indent.nvim',
---     config = function() require('guess-indent').setup {} end,
---   }
-
 --   use 'hashivim/vim-terraform'
 
 --   use 'tpope/vim-abolish'
