@@ -25,75 +25,24 @@ keymap("t", "kj", "<C-\\><C-n>", keymap_opts)
 keymap("n", "<F5>", ":call jobstart([expand('%:e') == 'scad' ? 'openscad' : 'ocp-view', expand('%h')])<CR>", keymap_opts)
 
 -- Look
-vim.o.background = "light"
-cmd("colorscheme NeoSolarized")
 vim.o.number = true
-vim.o.termguicolors = true
 
 -- Set up plugins
 vim.g.terraform_fmt_on_save = 1
 
-require('packer').startup(function (use)
-  use 'wbthomason/packer.nvim'
+require("config.lazy")
+-- Plugins left to migrate to Lazy:
+--   use {
+--     'nmac427/guess-indent.nvim',
+--     config = function() require('guess-indent').setup {} end,
+--   }
 
-  use 'neovim/nvim-lspconfig'
+--   use 'hashivim/vim-terraform'
 
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = function()
-      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-      ts_update()
-    end,
-    config = function()
-      require('nvim-treesitter.configs').setup {
-        ensure_installed = { "c", "lua", "rust", "python", "terraform", "cue", "typescript", "scss", "svelte" },
-        highlight = {
-          enable = true,
-          additional_vim_regex_highlighting = false,
-        },
-        indent = {
-          enable = true
-        }
-      }
-    end,
-  }
+--   use 'tpope/vim-abolish'
 
-  use {
-    'lewis6991/gitsigns.nvim',
-    config = function()
-      require('gitsigns').setup()
-    end
-  }
-
-  use 'tpope/vim-commentary'
-
-  use {
-    'nmac427/guess-indent.nvim',
-    config = function() require('guess-indent').setup {} end,
-  }
-
-  use 'hashivim/vim-terraform'
-
-  use {
-    "folke/todo-comments.nvim",
-    requires = "nvim-lua/plenary.nvim",
-    config = function()
-      require("todo-comments").setup {}
-    end
-  }
-
-  use {
-    "kylechui/nvim-surround",
-    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-    config = function()
-      require("nvim-surround").setup {}
-    end
-  }
-
-  use 'tpope/vim-abolish'
-
-  use 'knsh14/vim-github-link'
-end)
+--   use 'knsh14/vim-github-link'
+-- end)
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
