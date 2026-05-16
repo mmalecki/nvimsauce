@@ -9,6 +9,7 @@ vim.o.shiftwidth = 2
 vim.o.expandtab = true
 vim.o.smartindent = true
 vim.o.tabstop = 2
+vim.o.foldlevel = 99
 
 -- Filename completion
 vim.opt.wildignore:append{"*.pdf","*.stl","*.step","*.3mf","*.jpg","*.png"}
@@ -49,7 +50,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local bufopts = { noremap = true, silent = true, buffer = ev.buf }
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
     vim.keymap.set('n', 'cR', vim.lsp.buf.rename, bufopts)
   end
@@ -66,8 +66,11 @@ vim.lsp.enable('pyright')
 vim.lsp.enable('gopls')
 vim.lsp.enable('rust_analyzer')
 vim.lsp.enable('clangd')
+vim.lsp.enable('svelte')
 
-vim.lsp.set_log_level("off")
+vim.lsp.log.set_level("off")
+vim.lsp.inlay_hint.enable()
+vim.diagnostic.config({ virtual_text = true })
 
 -- Autocommands
 autocmd('BufWritePre', {
