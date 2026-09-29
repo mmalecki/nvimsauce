@@ -14,6 +14,9 @@ vim.o.foldlevel = 99
 -- Filename completion
 vim.opt.wildignore:append{"*.pdf","*.stl","*.step","*.3mf","*.jpg","*.png"}
 
+-- Project-local config (.nvim.lua in cwd or a parent; needs :trust once)
+vim.o.exrc = true
+
 -- Search options
 vim.o.ignorecase = true
 vim.o.smartcase = true
