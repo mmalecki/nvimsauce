@@ -60,7 +60,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 -- Set up language servers
 vim.lsp.enable('terraformls')
-vim.lsp.enable('ts_ls')
+vim.lsp.enable('tsc')
 vim.lsp.enable('openscad_lsp', {
   cmd = { "openscad-lsp", "--stdio", "--fmt-style", "file", "--fmt-exe", "clang-format-15" }
 })
